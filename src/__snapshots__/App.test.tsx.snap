@@ -19,6 +19,7 @@ exports[`App renders the app correctly 1`] = `
         >
           <NavbarBrand>
             <img
+              alt="Localsearch logo"
               className="d-inline-block align-top"
               height="30"
               src="https://www.localsearch.ch/files/upload/469_22ad1521ca.svg"

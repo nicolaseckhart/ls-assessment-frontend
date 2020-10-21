@@ -18,6 +18,7 @@ const App: React.FC = () => (
                 width="115"
                 height="30"
                 className="d-inline-block align-top"
+                alt="Localsearch logo"
               />
               Assessment
             </Navbar.Brand>
