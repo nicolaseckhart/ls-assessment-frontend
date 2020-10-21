@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { CompactDailyHours, DailyOpeningHours, Day, Place } from '../../shared';
+import {Card, Col, Row} from 'react-bootstrap';
 
 interface State {
   place: Place | undefined;
@@ -69,15 +70,25 @@ class ShowPlaceScreen extends React.Component<RouteChildrenProps<PlaceNavParams>
   render = () => (
     <div className="ShowPlaceScreen">
       {this.state.place && (
-        <div>
-          <h1>{this.state.place.name}</h1>
-          {this.renderPlaceAttribute('Identifier', this.state.place.id)}
-          {this.renderPlaceAttribute('Address', this.state.place.address)}
-          <p>
-            <b>Opening Hours:</b>
-          </p>
-          {this.renderOpeningHours()}
-        </div>
+        <Card>
+          <Card.Header>{this.state.place.id}</Card.Header>
+          <Card.Body>
+            <Row>
+              <Col md={6} sm={12}>
+                <Card.Title>{this.state.place.name}</Card.Title>
+                <Card.Subtitle>{this.state.place.address}</Card.Subtitle>
+              </Col>
+              <Col md={6} sm={12} className="mt-3 mt-md-0">
+                <Card.Text>
+                  <p>
+                    <b>Opening Hours:</b>
+                  </p>
+                  {this.renderOpeningHours()}
+                </Card.Text>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
       )}
     </div>
   );
