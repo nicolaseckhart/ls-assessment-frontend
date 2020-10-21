@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { CompactDailyHours, DailyOpeningHours, Day, Place } from '../../shared';
-import {Card, Col, Row} from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 
 interface State {
   place: Place | undefined;

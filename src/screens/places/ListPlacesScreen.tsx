@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import {Col, Form, Jumbotron, Row} from 'react-bootstrap';
+import { Col, Form, Jumbotron, Row } from 'react-bootstrap';
 
 interface State {
   placeId: string;
@@ -27,7 +27,7 @@ class ListPlacesScreen extends React.Component<RouteChildrenProps<{}>, State> {
 
       <Jumbotron className="mt-4">
         <p className="lead">
-          There is no list of places yet, but you can search by place id. Example identifiers your can search for are
+          There is no list of places yet, but you can search by place id. Example identifiers your can search for are{' '}
           <code>GXvPAor1ifNfpF0U5PTG0w</code> or <code>ohGSnJtMIC5nPfYRi_HTAg</code>.
         </p>
       </Jumbotron>
@@ -43,10 +43,11 @@ class ListPlacesScreen extends React.Component<RouteChildrenProps<{}>, State> {
           />
         </Col>
         <Col sm={3}>
-          <Link className="btn-lg btn btn-default" to={`/places/${this.state.placeId}`}>Search</Link>
+          <Link className="btn-lg btn btn-default" to={`/places/${this.state.placeId}`}>
+            Search
+          </Link>
         </Col>
       </Form.Group>
-
     </div>
   );
 }

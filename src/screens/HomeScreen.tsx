@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Jumbotron } from "react-bootstrap";
+import { Jumbotron } from 'react-bootstrap';
 
 const HomeScreen: React.FC = () => (
   <Jumbotron>

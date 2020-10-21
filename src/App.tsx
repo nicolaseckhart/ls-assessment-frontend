@@ -9,7 +9,6 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 const App: React.FC = () => (
   <Router>
     <div className="App">
-
       <Navbar bg="light" expand="lg">
         <Container>
           <Link to="/">
