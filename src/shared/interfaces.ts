@@ -1,3 +1,5 @@
+export type Day = 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+
 export interface Place {
   id: string;
   name: string;
@@ -6,6 +8,11 @@ export interface Place {
 }
 
 export interface DailyOpeningHours {
-  day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+  day: Day;
   openDuring: string[];
+}
+
+export interface CompactDailyHours {
+  hours: string[];
+  days: Day[];
 }

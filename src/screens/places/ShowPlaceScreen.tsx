@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
-import { DailyOpeningHours, Place } from '../../shared';
+import { CompactDailyHours, DailyOpeningHours, Day, Place } from '../../shared';
 
 interface State {
   place: Place | undefined;
@@ -36,6 +36,36 @@ class ShowPlaceScreen extends React.Component<RouteChildrenProps<PlaceNavParams>
     </p>
   );
 
+  renderOpeningHours = () => {
+    // Locally used helper functions
+    const shortenDays = (days: Day[]) => [...new Set([days[0], days[days.length - 1]])].join(' - ');
+    const findByHours = (target: CompactDailyHours[], d: DailyOpeningHours) =>
+      target.find((c: CompactDailyHours) => c.hours.join('') === d.openDuring.join(''));
+
+    // Group days by opening hours using reduce
+    const compactOpeningHours = this.state.place!.openingHours.reduce(
+      (result: CompactDailyHours[], d: DailyOpeningHours) => {
+        const foundItem = findByHours(result, d);
+        foundItem ? foundItem['days'].push(d.day) : result.push({ hours: d.openDuring, days: [d.day] });
+        return result;
+      },
+      [],
+    );
+
+    return (
+      <ul>
+        {compactOpeningHours.map((c: CompactDailyHours, index: number) => (
+          <li key={index}>
+            <b>{shortenDays(c.days)}</b>
+            <br />
+            {c.hours.length === 0 && 'closed'}
+            {c.hours.join(' | ')}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   render = () => (
     <div className="ShowPlaceScreen">
       {this.state.place && (
@@ -46,13 +76,7 @@ class ShowPlaceScreen extends React.Component<RouteChildrenProps<PlaceNavParams>
           <p>
             <b>Opening Hours:</b>
           </p>
-          <ul>
-            {this.state.place.openingHours.map((dailyOpeningHours: DailyOpeningHours, index: number) => (
-              <li key={index}>
-                <b>{dailyOpeningHours.day}:</b> {dailyOpeningHours.openDuring.join(' | ')}
-              </li>
-            ))}
-          </ul>
+          {this.renderOpeningHours()}
         </div>
       )}
     </div>
