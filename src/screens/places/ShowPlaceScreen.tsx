@@ -2,6 +2,7 @@ import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 import { CompactDailyHours, DailyOpeningHours, Day, Place } from '../../shared';
 import { Card, Col, Row } from 'react-bootstrap';
+import PlaceOpenIndicator from '../../components/PlaceOpenIndicator';
 
 interface State {
   place: Place | undefined;
@@ -71,7 +72,10 @@ class ShowPlaceScreen extends React.Component<RouteChildrenProps<PlaceNavParams>
     <div className="ShowPlaceScreen">
       {this.state.place && (
         <Card>
-          <Card.Header>{this.state.place.id}</Card.Header>
+          <Card.Header>
+            <PlaceOpenIndicator openingHours={this.state.place.openingHours} />
+            {this.state.place.id}
+          </Card.Header>
           <Card.Body>
             <Row>
               <Col md={6} sm={12}>
